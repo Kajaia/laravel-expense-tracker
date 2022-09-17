@@ -7,7 +7,12 @@
             <div class="card rounded-3 shadow-sm border-0">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <h1 class="mb-0 fs-5">Hello, {{ Auth::user()->name }}!</h1>
+                        <div>
+                            <h1 class="mb-0 fs-5">Hello, {{ Auth::user()->name }}!</h1>
+                            <small class="mb-0">
+                                Balance: <span class="fw-bold">{{ Auth::user()->balance . '₾' }}</span>
+                            </small>
+                        </div>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm px-4">
@@ -15,13 +20,9 @@
                             </button>
                         </form>
                     </div>
-                    <div>
-                        <h6>Add categories</h6>
-                        <livewire:categories-by-types :type="'add'" />
-                    </div>
-                    <div>
-                        <h6>Subtract categories</h6>
-                        <livewire:categories-by-types :type="'subtract'" />
+                    <div class="mt-3">
+                        <h6>Activity</h6>
+                        <livewire:activity-form />
                     </div>
                 </div>
             </div>
