@@ -7,21 +7,18 @@
             <div class="card rounded-3 shadow-sm border-0">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <div>
+                        <div title="{{ 'Logged in user: ' . Auth::user()->name }}">
                             <h1 class="mb-0 fs-5">Hello, {{ Auth::user()->name }}!</h1>
-                            <small class="mb-0">
-                                Balance: <span class="fw-bold">{{ Auth::user()->balance . '₾' }}</span>
-                            </small>
+                            <livewire:activity-balance />
                         </div>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm px-4">
-                                Logout
+                            <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm" title="Logout">
+                                <i class="fas fa-power-off"></i>
                             </button>
                         </form>
                     </div>
                     <div class="mt-3">
-                        <h6>Activity</h6>
                         <livewire:activity-form />
                     </div>
                 </div>

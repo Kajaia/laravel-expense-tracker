@@ -35,6 +35,8 @@ class ActivityForm extends Component
             $this->note,
             $this->categoryId
         );
+
+        $this->emit('addedActivity');
     }
 
     public function showForm(string $type)
