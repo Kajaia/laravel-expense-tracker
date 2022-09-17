@@ -9,3 +9,11 @@
 .category:hover {
     border: 1px solid #0d6efd;
 }
+
+.tiny-text {
+    font-size: 11px;
+}
+
+.text-small {
+    font-size: 13px;
+}

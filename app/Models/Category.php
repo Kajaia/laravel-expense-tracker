@@ -18,6 +18,7 @@ class Category extends Model
 
     public function activities(): HasMany
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)
+            ->orderBy('created_at', 'desc');
     }
 }
