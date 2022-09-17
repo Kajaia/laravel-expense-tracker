@@ -17,8 +17,11 @@ class Category extends Model
         'type'
     ];
 
-    public function activities(?string $from = null, ?string $to = null): HasMany
+    public function activities(): HasMany
     {
+        $from = request('from');
+        $to = request('to');
+        
         return $this->hasMany(Activity::class)
             ->when($from && $to, function($query) use ($from, $to) {
                 $query->whereBetween('created_at', [
