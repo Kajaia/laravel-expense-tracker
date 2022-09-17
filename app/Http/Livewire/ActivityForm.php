@@ -30,21 +30,46 @@ class ActivityForm extends Component
     {
         $this->validate((new ActivityRequest)->rules());
 
-        if($this->balance() >= $this->amount)
-        {
-            $activityService = app(ActivityService::class);
+        if($this->type === 'subtract') {
+            if($this->balance() >= $this->amount) {
+                $this->addActivityAndFireEvent();
 
-            $activityService->addActivity(
-                $this->type,
-                $this->amount,
-                $this->note,
-                $this->categoryId
-            );
+                $this->dispatchBrowserEvent('swal:toast', [
+                    'icon' => 'success',
+                    'title' => 'Subtracted money from your balance'
+                ]);
+            } else {
+                $this->dispatchBrowserEvent('swal:toast', [
+                    'icon' => 'warning',
+                    'title' => 'Can\'t go below your balance'
+                ]);
+            }
+        } elseif($this->type === 'add') {
+            $this->addActivityAndFireEvent();
 
-            $this->resetInputs();
-
-            $this->emit('addedActivity');
+            $this->dispatchBrowserEvent('swal:toast', [
+                'icon' => 'success',
+                'title' => 'Added money to your balance'
+            ]);
         }
+
+
+    }
+
+    public function addActivityAndFireEvent()
+    {
+        $activityService = app(ActivityService::class);
+
+        $activityService->addActivity(
+            $this->type,
+            $this->amount,
+            $this->note,
+            $this->categoryId
+        );
+
+        $this->resetInputs();
+
+        $this->emit('addedActivity');
     }
 
     public function showForm(string $type)
