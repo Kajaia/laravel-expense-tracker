@@ -15,6 +15,14 @@
                             </button>
                         </form>
                     </div>
+                    <div>
+                        <h6>Add categories</h6>
+                        <livewire:categories-by-types :type="'add'" />
+                    </div>
+                    <div>
+                        <h6>Subtract categories</h6>
+                        <livewire:categories-by-types :type="'subtract'" />
+                    </div>
                 </div>
             </div>
         </div>
