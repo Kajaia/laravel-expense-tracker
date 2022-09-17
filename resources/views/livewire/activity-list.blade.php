@@ -4,6 +4,11 @@
         <input wire:model="from" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (from)" title="Date (from)">
         <input wire:model="to" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (to)" title="Date (to)">
     </div>
+    @if($this->categories->count())
+    <figure wire:ignore class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
+    @endif
     @foreach($this->categories as $category)
         <div class="d-flex align-items-center justify-content-between">
             <div>
@@ -44,3 +49,51 @@
         </div>
     @endforeach
 </div>
+
+@section('scripts')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}₾</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '₾'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y}₾'
+            }
+        }
+    },
+    series: [{
+        name: 'Amount',
+        colorByPoint: true,
+        data: [
+            @foreach($this->categories as $category)
+            {
+                name: '<span style="color: {{ $category->type === "add" ? "#198754" : "#dc3545" }};">{{ $category->title }}</span>',
+                y: Math.abs({{ $category->activities->sum('amount') }})
+            },
+            @endforeach
+        ]
+    }]
+});
+</script>
+@endsection
