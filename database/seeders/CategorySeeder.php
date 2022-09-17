@@ -25,7 +25,7 @@ class CategorySeeder extends Seeder
             ['title' => 'Entertainment', 'icon' => 'fa-theater-masks', 'type' => 'subtract'],
             ['title' => 'Food', 'icon' => 'fa-utensils', 'type' => 'subtract'],
             ['title' => 'Gifts', 'icon' => 'fa-gift', 'type' => 'subtract'],
-            ['title' => 'Health', 'icon' => 'fa-coins', 'type' => 'subtract'],
+            ['title' => 'Health', 'icon' => 'fa-medkit', 'type' => 'subtract'],
             ['title' => 'House', 'icon' => 'fa-home', 'type' => 'subtract'],
             ['title' => 'Pets', 'icon' => 'fa-paw', 'type' => 'subtract'],
             ['title' => 'Salary', 'icon' => 'fa-wallet', 'type' => 'add'],
@@ -35,7 +35,7 @@ class CategorySeeder extends Seeder
             ['title' => 'Taxi', 'icon' => 'fa-taxi', 'type' => 'subtract'],
             ['title' => 'Toiletry', 'icon' => 'fa-toilet-paper', 'type' => 'subtract'],
             ['title' => 'Transport', 'icon' => 'fa-bus-alt', 'type' => 'subtract'],
-            ['title' => 'Others', 'icon' => 'fa-coins', 'type' => 'subtract'],
+            ['title' => 'Others', 'icon' => 'fa-ellipsis-h', 'type' => 'subtract'],
         ];
 
         foreach($categories as $category)
