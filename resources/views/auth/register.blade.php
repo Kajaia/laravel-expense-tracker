@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group mb-3">
                         <label for="name" class="form-label">Full name</label>
-                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Ex: John Doe">
+                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Ex: John Doe" autofocus>
 
                         @error('name')
                         <div class="invalid-feedback">
