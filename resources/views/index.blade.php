@@ -6,13 +6,15 @@
         <div class="col-12 col-md-6 col-lg-4 mt-3">
             <div class="card rounded-3 shadow-sm border-0">
                 <div class="card-body">
-                    <h1 class="fs-4">Hello, {{ Auth::user()->name }}!</h1>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary rounded-3 shadow-sm px-4">
-                            Logout
-                        </button>
-                    </form>
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <h1 class="mb-0 fs-5">Hello, {{ Auth::user()->name }}!</h1>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm px-4">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

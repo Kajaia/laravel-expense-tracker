@@ -52,6 +52,7 @@
                     </div>
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-primary rounded-3 shadow-sm px-4">Register</button>
+                        <a href="{{ route('login') }}" class="btn btn-link text-decoration-none">Already registered?</a>
                     </div>
                 </form>
             </div>

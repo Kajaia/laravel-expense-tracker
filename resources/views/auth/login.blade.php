@@ -40,6 +40,7 @@
                     </div>
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-primary rounded-3 shadow-sm px-4">Login</button>
+                        <a href="{{ route('register') }}" class="btn btn-link text-decoration-none">Register</a>
                     </div>
                 </form>
             </div>
