@@ -1,11 +1,10 @@
 <div class="mt-3">
     <div class="d-flex align-items-center gap-2 mb-3">
         <i class="fas fa-calendar-alt fa-lg text-secondary"></i>
-        <input wire:model="from" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (from)">
-        <input wire:model="to" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (to)">
+        <input wire:model="from" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (from)" title="Date (from)">
+        <input wire:model="to" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (to)" title="Date (to)">
     </div>
     @foreach($this->categories as $category)
-        @if($category->activities->count())
         <div class="d-flex align-items-center justify-content-between">
             <div>
                 <i class="fas {{ $category->icon }} text-primary me-3"></i>
@@ -43,6 +42,5 @@
             @empty
             @endforelse
         </div>
-        @endif
     @endforeach
 </div>
