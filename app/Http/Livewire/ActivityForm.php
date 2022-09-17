@@ -30,18 +30,21 @@ class ActivityForm extends Component
     {
         $this->validate((new ActivityRequest)->rules());
 
-        $activityService = app(ActivityService::class);
+        if($this->balance() >= $this->amount)
+        {
+            $activityService = app(ActivityService::class);
 
-        $activityService->addActivity(
-            $this->type,
-            $this->amount,
-            $this->note,
-            $this->categoryId
-        );
+            $activityService->addActivity(
+                $this->type,
+                $this->amount,
+                $this->note,
+                $this->categoryId
+            );
 
-        $this->resetInputs();
+            $this->resetInputs();
 
-        $this->emit('addedActivity');
+            $this->emit('addedActivity');
+        }
     }
 
     public function showForm(string $type)
@@ -62,5 +65,12 @@ class ActivityForm extends Component
         $this->amount = null;
         $this->note = '';
         $this->categoryId = null;
+    }
+
+    public function balance(): int
+    {
+        $activityService = app(ActivityService::class);
+
+        return $activityService->getBalance();
     }
 }
