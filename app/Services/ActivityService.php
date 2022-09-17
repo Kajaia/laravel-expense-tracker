@@ -3,14 +3,17 @@
 namespace App\Services;
 
 use App\Actions\Activity\AddActivityAction;
+use App\Actions\Activity\GetUserActivitiesAction;
 use App\Actions\Activity\GetUserBalance;
 use App\Models\Activity;
+use Illuminate\Pagination\Paginator;
 
 class ActivityService
 {
     public function __construct(
         protected AddActivityAction $addActivityAction,
-        protected GetUserBalance $getUserBalance
+        protected GetUserBalance $getUserBalance,
+        protected GetUserActivitiesAction $getUserActivitiesAction
     ) {}
 
     public function addActivity(
@@ -31,5 +34,10 @@ class ActivityService
     public function getBalance(): int
     {
         return ($this->getUserBalance)();
+    }
+
+    public function getActivities(): Paginator
+    {
+        return ($this->getUserActivitiesAction)();
     }
 }

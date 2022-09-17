@@ -20,6 +20,7 @@
                     </div>
                     <div class="mt-3">
                         <livewire:activity-form />
+                        <livewire:activity-list />
                     </div>
                 </div>
             </div>
