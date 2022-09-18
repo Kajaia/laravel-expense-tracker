@@ -45,6 +45,12 @@
                 </div>
             </div>
             @endforeach
+            <div class="col-12 mt-2">
+                <button wire:click="hideForm" class="btn btn-link rounded-3 w-100 text-decoration-none" title="Close form">
+                    <i class="fas fa-times fa-sm"></i>
+                    <small>Close</small>
+                </button>
+            </div>
         </div>
     @endif
 </div>

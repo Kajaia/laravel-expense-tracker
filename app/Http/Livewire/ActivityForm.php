@@ -77,6 +77,11 @@ class ActivityForm extends Component
         $this->type = $type;
     }
 
+    public function hideForm()
+    {
+        $this->type = null;
+    }
+
     public function chooseCategory(int $id)
     {
         $this->categoryId = $id;
@@ -86,7 +91,7 @@ class ActivityForm extends Component
 
     public function resetInputs()
     {
-        $this->type = null;
+        $this->hideForm();
         $this->amount = null;
         $this->note = '';
         $this->categoryId = null;

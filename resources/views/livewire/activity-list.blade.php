@@ -5,7 +5,7 @@
         <input wire:model="to" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (to)" title="Date (to)">
     </div>
     @if($this->categories->count())
-    <figure wire:ignore class="highcharts-figure d-none">
+    <figure wire:ignore class="highcharts-figure">
         <div id="container"></div>
     </figure>
     @endif
