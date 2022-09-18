@@ -4,7 +4,7 @@
         <input wire:model="from" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (from)" title="Date (from)">
         <input wire:model="to" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (to)" title="Date (to)">
     </div>
-    @if($this->categories->count())
+    @if($this->expenses->count())
     <figure wire:ignore class="highcharts-figure">
         <div id="container"></div>
     </figure>
@@ -69,6 +69,7 @@ for (const [key, value] of Object.entries(categories)) {
     });
 }
 </script>
+@if($this->expenses->count())
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
@@ -83,11 +84,11 @@ Highcharts.chart('container', {
         text: ''
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.y}₾</b>'
+        pointFormat: '<b>{point.percentage:.1f}%</b>'
     },
     accessibility: {
         point: {
-            valueSuffix: '₾'
+            valueSuffix: '%'
         }
     },
     plotOptions: {
@@ -96,7 +97,11 @@ Highcharts.chart('container', {
             cursor: 'pointer',
             dataLabels: {
                 enabled: true,
-                format: '<b>{point.name}</b>: {point.y}₾'
+                formatter: function() {
+                    return Math.round(this.percentage * 100) / 100 + '%';
+                },
+                distance: -30,
+                color:'white'
             }
         }
     },
@@ -104,14 +109,15 @@ Highcharts.chart('container', {
         name: 'Amount',
         colorByPoint: true,
         data: [
-            @foreach($this->categories as $category)
+            @foreach($this->expenses as $expense)
             {
-                name: '<span style="color: {{ $category->type === "add" ? "#198754" : "#dc3545" }};">{{ $category->title }}</span>',
-                y: {{ $category->activities->sum('amount') }}
+                name: '{{ $expense->title }}',
+                y: {{ $expense->activities->sum('amount') }}
             },
             @endforeach
         ]
     }]
 });
 </script>
+@endif
 @endsection

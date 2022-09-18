@@ -18,8 +18,12 @@ class CategoryService
         return ($this->getCategoriesAction)($type);
     }
 
-    public function getCategoryWithActivities(?string $from = null, ?string $to = null): Collection
+    public function getCategoryWithActivities(
+        ?string $type = null,
+        ?string $from = null,
+        ?string $to = null
+    ): Collection
     {
-        return ($this->getCategoryWithActivitiesAction)($from, $to);
+        return ($this->getCategoryWithActivitiesAction)($type, $from, $to);
     }
 }

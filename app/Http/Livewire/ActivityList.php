@@ -22,6 +22,19 @@ class ActivityList extends Component
 
     public function getCategoriesProperty(CategoryService $categoryService): Collection
     {
-        return $categoryService->getCategoryWithActivities($this->from, $this->to);
+        return $categoryService->getCategoryWithActivities(
+            null,
+            $this->from,
+            $this->to
+        );
+    }
+
+    public function getExpensesProperty(CategoryService $categoryService): Collection
+    {
+        return $categoryService->getCategoryWithActivities(
+            'subtract',
+            $this->from,
+            $this->to
+        );
     }
 }

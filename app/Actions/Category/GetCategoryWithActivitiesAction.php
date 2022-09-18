@@ -12,9 +12,16 @@ class GetCategoryWithActivitiesAction
         protected Category $model
     ) {}
 
-    public function __invoke(?string $from = null, ?string $to = null)
+    public function __invoke(
+        ?string $type = null,
+        ?string $from = null,
+        ?string $to = null
+    )
     {
         return $this->model::with('activities')
+            ->when($type, function($query) use ($type) {
+                $query->where('type', $type);
+            })
             ->whereHas('activities', function($query) use ($from, $to) {
                 $query->where('user_id', Auth::user()->id)
                     ->when($from && $to, function($query) use ($from, $to) {
