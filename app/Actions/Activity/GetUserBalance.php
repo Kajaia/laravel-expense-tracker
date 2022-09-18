@@ -11,7 +11,7 @@ class GetUserBalance
         protected Activity $model
     ) {}
 
-    public function __invoke(): int
+    public function __invoke(): float
     {
         $added = $this->model::with('category')
             ->whereHas('category', function($query) {

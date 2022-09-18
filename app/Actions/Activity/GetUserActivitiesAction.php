@@ -3,6 +3,7 @@
 namespace App\Actions\Activity;
 
 use App\Models\Activity;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class GetUserActivitiesAction
@@ -11,7 +12,7 @@ class GetUserActivitiesAction
         protected Activity $model
     ) {}
 
-    public function __invoke()
+    public function __invoke(): Paginator
     {
         return $this->model::with('category')
             ->where('user_id', Auth::user()->id)

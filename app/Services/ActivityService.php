@@ -17,7 +17,7 @@ class ActivityService
     ) {}
 
     public function addActivity(
-        int $amount,
+        float $amount,
         ?string $note,
         int $categoryId
     ): Activity
@@ -29,7 +29,7 @@ class ActivityService
         );
     }
 
-    public function getBalance(): int
+    public function getBalance(): float
     {
         return ($this->getUserBalance)();
     }

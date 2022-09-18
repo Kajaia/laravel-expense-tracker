@@ -9,7 +9,7 @@ class ActivityBalance extends Component
 {
     protected $listeners = ['addedActivity' => '$refresh'];
 
-    public function getBalanceProperty(ActivityService $activityService): int
+    public function getBalanceProperty(ActivityService $activityService): float
     {
         return $activityService->getBalance();
     }

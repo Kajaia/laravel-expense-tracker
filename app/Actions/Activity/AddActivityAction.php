@@ -12,7 +12,7 @@ class AddActivityAction
     ) {}
 
     public function __invoke(
-        int $amount,
+        float $amount,
         ?string $note,
         int $categoryId
     ): Activity
