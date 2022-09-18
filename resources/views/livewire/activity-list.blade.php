@@ -107,6 +107,7 @@ Highcharts.chart('container', {
     },
     series: [{
         name: 'Amount',
+        innerSize: '50%',
         colorByPoint: true,
         data: [
             @foreach($this->expenses as $expense)
