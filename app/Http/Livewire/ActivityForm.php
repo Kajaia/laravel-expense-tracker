@@ -13,7 +13,7 @@ class ActivityForm extends Component
     public $type;
     public $amount;
     public $note;
-    public $categoryId;
+    public $category_id;
 
     protected $listeners = [
         'showForm' => 'getCategoriesProperty'
@@ -63,7 +63,7 @@ class ActivityForm extends Component
         $activityService->addActivity(
             $this->amount,
             $this->note,
-            $this->categoryId
+            $this->category_id
         );
 
         $this->resetInputs();
@@ -83,7 +83,7 @@ class ActivityForm extends Component
 
     public function chooseCategory(int $id)
     {
-        $this->categoryId = $id;
+        $this->category_id = $id;
 
         $this->saveForm();
     }
@@ -93,7 +93,7 @@ class ActivityForm extends Component
         $this->hideForm();
         $this->amount = null;
         $this->note = '';
-        $this->categoryId = null;
+        $this->category_id = null;
     }
 
     public function balance(): int
