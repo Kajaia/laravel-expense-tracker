@@ -11,12 +11,17 @@
                             <h1 class="mb-0 fs-5">Hello, {{ Auth::user()->name }}!</h1>
                             <livewire:activity-balance />
                         </div>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm" title="Logout">
-                                <i class="fas fa-power-off"></i>
-                            </button>
-                        </form>
+                        <div>
+                            <a href="{{ route('home') }}" class="btn btn-sm btn-secondary rounded-3 shadow-sm" title="Refresh page">
+                                <i class="fas fa-redo"></i>
+                            </a>
+                            <form class="d-inline" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm" title="Logout">
+                                    <i class="fas fa-power-off"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <div class="mt-3">
                         <livewire:activity-form />
