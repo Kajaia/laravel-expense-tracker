@@ -24,7 +24,7 @@
                 </span>
             </div>
         </div>
-        <div id="details-{{ $category->id }}" class="px-4 py-2 bg-light rounded-2 mt-2 mb-3 d-none">
+        <div wire:ignore id="details-{{ $category->id }}" class="px-4 py-2 bg-light rounded-2 mt-2 mb-3 d-none">
             @forelse($category->activities as $activity)
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -107,7 +107,7 @@ Highcharts.chart('container', {
             @foreach($this->categories as $category)
             {
                 name: '<span style="color: {{ $category->type === "add" ? "#198754" : "#dc3545" }};">{{ $category->title }}</span>',
-                y: Math.abs({{ $category->activities->sum('amount') }})
+                y: {{ $category->activities->sum('amount') }}
             },
             @endforeach
         ]
