@@ -12,14 +12,13 @@ class AddActivityAction
     ) {}
 
     public function __invoke(
-        string $type,
         int $amount,
         ?string $note,
         int $categoryId
     ): Activity
     {
         return $this->model->create([
-            'amount' => $type === 'add' ? $amount : -$amount,
+            'amount' => $amount,
             'note' => $note,
             'category_id' => $categoryId,
             'user_id' => Auth::user()->id

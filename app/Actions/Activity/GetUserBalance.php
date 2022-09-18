@@ -13,6 +13,19 @@ class GetUserBalance
 
     public function __invoke(): int
     {
-        return $this->model::where('user_id', Auth::user()->id)->sum('amount');
+        $added = $this->model::with('category')
+            ->whereHas('category', function($query) {
+                $query->where('type', 'add');
+            })
+            ->where('user_id', Auth::user()->id)
+            ->sum('amount');
+        $subtracted = $this->model::with('category')
+            ->whereHas('category', function($query) {
+                $query->where('type', 'subtract');
+            })
+            ->where('user_id', Auth::user()->id)
+            ->sum('amount');
+
+        return $added - $subtracted;
     }
 }

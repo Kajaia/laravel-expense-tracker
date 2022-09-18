@@ -17,14 +17,12 @@ class ActivityService
     ) {}
 
     public function addActivity(
-        string $type,
         int $amount,
         ?string $note,
         int $categoryId
     ): Activity
     {
         return ($this->addActivityAction)(
-            $type,
             $amount,
             $note,
             $categoryId

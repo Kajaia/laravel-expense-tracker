@@ -61,7 +61,6 @@ class ActivityForm extends Component
         $activityService = app(ActivityService::class);
 
         $activityService->addActivity(
-            $this->type,
             $this->amount,
             $this->note,
             $this->categoryId
