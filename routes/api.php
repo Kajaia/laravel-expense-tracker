@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ActivityController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\LogoutController;
 use App\Http\Controllers\API\RegisterController;
@@ -24,5 +25,10 @@ Route::prefix('v1')->group(function() {
     
     Route::middleware('auth:sanctum')->group(function() {
         Route::post('/logout', LogoutController::class);
+
+        Route::get('/balance', [ActivityController::class, 'balance']);
+        Route::put('/activities/create', [ActivityController::class, 'addActivity']);
+        Route::get('/activities/all', [ActivityController::class, 'activities']);
+        Route::get('/activities/expenses', [ActivityController::class, 'expenses']);
     });
 });

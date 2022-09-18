@@ -25,7 +25,8 @@ class ActivityRequest extends FormRequest
     {
         return [
             'amount' => 'required|numeric|min:1|max:100000',
-            'note' => 'nullable|string|max:255'
+            'note' => 'nullable|string|max:255',
+            'category_id' => 'required|integer'
         ];
     }
 }
