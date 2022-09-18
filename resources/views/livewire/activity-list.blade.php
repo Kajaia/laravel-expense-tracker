@@ -5,12 +5,12 @@
         <input wire:model="to" type="date" max="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="form-control py-1 text-small cursor-pointer" placeholder="Date (to)" title="Date (to)">
     </div>
     @if($this->categories->count())
-    <figure wire:ignore class="highcharts-figure">
+    <figure wire:ignore class="highcharts-figure d-none">
         <div id="container"></div>
     </figure>
     @endif
     @foreach($this->categories as $category)
-        <div class="d-flex align-items-center justify-content-between">
+        <div id="category-{{ $category->id }}" class="d-flex align-items-center justify-content-between cursor-pointer">
             <div>
                 <i class="fas {{ $category->icon }} text-primary me-3"></i>
                 <span class="fw-bold">{{ $category->title }}</span>
@@ -24,8 +24,8 @@
                 </span>
             </div>
         </div>
-        <div class="px-4 py-2 bg-light rounded-2 mt-2 mb-3">
-            @forelse($category->activities as $activity)
+        @forelse($category->activities as $activity)
+        <div id="details-{{ $category->id }}" class="px-4 py-2 bg-light rounded-2 mt-2 mb-3 d-none">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <small class="{{ $category->type === 'add' ? 'text-success' : 'text-danger' }}">
@@ -38,19 +38,37 @@
                         </small>
                     </div>
                     <div>
-                        <small>{{ Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</small>
+                        <small>{{ Carbon\Carbon::parse($activity->created_at)->format('d M, Y') }}</small>
                     </div>
                 </div>
                 @if(!$loop->last)
-                <hr class="m-0 p-0 text-dark" />
+                <hr class="m-0 p-0 text-light" />
                 @endif
-            @empty
-            @endforelse
         </div>
+        @empty
+        @endforelse
+        @if(!$loop->last)
+        <hr id="divider-{{ $category->id }}" class="my-2 p-0 text-dark" />
+        @endif
     @endforeach
 </div>
 
 @section('scripts')
+<script>
+const categories = @json($this->categories->pluck('id'));
+
+for (const [key, value] of Object.entries(categories)) {
+    const category = document.querySelector(`#category-${value}`);
+    const details = document.querySelector(`#details-${value}`);
+    const divider = document.querySelector(`#divider-${value}`);
+    
+    category.addEventListener('click', function() {
+        details.classList.toggle('d-none');
+
+        if(divider) divider.classList.toggle('d-none');
+    });
+}
+</script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
