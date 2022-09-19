@@ -3,6 +3,7 @@
 namespace App\Actions\Category;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class GetCategoryByIdAction
 {
@@ -12,6 +13,9 @@ class GetCategoryByIdAction
 
     public function __invoke(int $id): Category
     {
-        return $this->model::findOrFail($id);
+        return $this->model::with('activities')
+            ->whereHas('activities', function($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->findOrFail($id);
     }
 }

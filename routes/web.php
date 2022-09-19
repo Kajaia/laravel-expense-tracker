@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -28,6 +29,8 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::view('/', 'index')->name('home');
+    Route::get('/{category:title}', ActivityController::class)
+        ->name('activities');
     
     Route::post('/logout', LogoutController::class)->name('logout');
 });

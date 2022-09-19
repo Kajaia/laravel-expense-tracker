@@ -65,3 +65,26 @@ const hideFormAndCloseBtn = () => {
     activityForm.classList.add("d-none");
     closeForm.classList.add("d-none");
 };
+
+/**
+ * Toast notification
+ */
+
+window.addEventListener("swal:toast", (event) => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+    });
+
+    Toast.fire({
+        icon: event.detail.icon,
+        title: event.detail.title,
+    });
+});
