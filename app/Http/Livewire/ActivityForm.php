@@ -6,6 +6,8 @@ use App\Http\Requests\ActivityRequest;
 use App\Services\ActivityService;
 use App\Services\CategoryService;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class ActivityForm extends Component
@@ -38,6 +40,8 @@ class ActivityForm extends Component
 
         if($category->type === 'subtract') {
             if($this->balance() >= $this->amount) {
+                Cache::decrement('balance'.Auth::user()->id, $this->amount);
+
                 $this->addActivityAndFireEvent();
 
                 $this->dispatchBrowserEvent('swal:toast', [
@@ -51,6 +55,8 @@ class ActivityForm extends Component
                 ]);
             }
         } elseif($category->type === 'add') {
+            Cache::increment('balance'.Auth::user()->id, $this->amount);
+
             $this->addActivityAndFireEvent();
 
             $this->dispatchBrowserEvent('swal:toast', [
