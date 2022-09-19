@@ -38,6 +38,7 @@
             })
         })
     </script>
+    <script src="main.js"></script>
     @yield('scripts')
     @livewireScripts
 </body>

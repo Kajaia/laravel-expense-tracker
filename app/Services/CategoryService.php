@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Actions\Category\GetCategoriesAction;
+use App\Actions\Category\GetAddCategoriesAction;
+use App\Actions\Category\GetSubtractCategoriesAction;
 use App\Actions\Category\GetCategoryByIdAction;
 use App\Actions\Category\GetCategoryWithActivitiesAction;
 use App\Models\Category;
@@ -11,14 +12,20 @@ use Illuminate\Database\Eloquent\Collection;
 class CategoryService
 {
     public function __construct(
-        protected GetCategoriesAction $getCategoriesAction,
+        protected GetSubtractCategoriesAction $getSubtractCategoriesAction,
+        protected GetAddCategoriesAction $getAddCategoriesAction,
         protected GetCategoryWithActivitiesAction $getCategoryWithActivitiesAction,
         protected GetCategoryByIdAction $getCategoryByIdAction
     ) {}
 
-    public function getCategories(string $type): Collection
+    public function getSubtractCategories(): Collection
     {
-        return ($this->getCategoriesAction)($type);
+        return ($this->getSubtractCategoriesAction)();
+    }
+
+    public function getAddCategories(): Collection
+    {
+        return ($this->getAddCategoriesAction)();
     }
 
     public function getCategoryById(int $id): Category

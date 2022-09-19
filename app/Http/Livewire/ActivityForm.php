@@ -10,27 +10,33 @@ use Livewire\Component;
 
 class ActivityForm extends Component
 {
-    public $type;
     public $amount;
     public $note;
     public $category_id;
 
-    protected $listeners = [
-        'showForm' => 'getCategoriesProperty'
-    ];
-
-    public function getCategoriesProperty(
+    public function getSubtractCategoriesProperty(
         CategoryService $categoryService
     ): Collection
     {
-        return $categoryService->getCategories($this->type);
+        return $categoryService->getSubtractCategories();
+    }
+
+    public function getAddCategoriesProperty(
+        CategoryService $categoryService
+    ): Collection
+    {
+        return $categoryService->getAddCategories();
     }
 
     public function saveForm()
     {
         $this->validate((new ActivityRequest)->rules());
 
-        if($this->type === 'subtract') {
+        $categoryService = app(CategoryService::class);
+
+        $category = $categoryService->getCategoryById($this->category_id);
+
+        if($category->type === 'subtract') {
             if($this->balance() >= $this->amount) {
                 $this->addActivityAndFireEvent();
 
@@ -44,7 +50,7 @@ class ActivityForm extends Component
                     'title' => 'Can\'t go below your balance'
                 ]);
             }
-        } elseif($this->type === 'add') {
+        } elseif($category->type === 'add') {
             $this->addActivityAndFireEvent();
 
             $this->dispatchBrowserEvent('swal:toast', [
@@ -71,16 +77,6 @@ class ActivityForm extends Component
         $this->emit('addedActivity');
     }
 
-    public function showForm(string $type)
-    {
-        $this->type = $type;
-    }
-
-    public function hideForm()
-    {
-        $this->type = null;
-    }
-
     public function chooseCategory(int $id)
     {
         $this->category_id = $id;
@@ -90,9 +86,8 @@ class ActivityForm extends Component
 
     public function resetInputs()
     {
-        $this->hideForm();
         $this->amount = null;
-        $this->note = '';
+        $this->note = null;
         $this->category_id = null;
     }
 
