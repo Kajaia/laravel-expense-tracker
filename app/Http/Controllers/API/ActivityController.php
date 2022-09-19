@@ -9,6 +9,8 @@ use App\Services\CategoryService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ActivityController extends Controller
 {
@@ -30,6 +32,8 @@ class ActivityController extends Controller
 
         if($category->type === 'subtract') {
             if($this->activityService->getBalance() >= $request->amount) {
+                Cache::decrement('balance_'.Auth::user()->id, $request->amount);
+
                 return $this->activityService->addActivity(
                     $request->amount,
                     $request->note,
@@ -41,6 +45,8 @@ class ActivityController extends Controller
                 ], 200);
             }
         } elseif($category->type === 'add') {
+            Cache::increment('balance_'.Auth::user()->id, $request->amount);
+
             return $this->activityService->addActivity(
                 $request->amount,
                 $request->note,
