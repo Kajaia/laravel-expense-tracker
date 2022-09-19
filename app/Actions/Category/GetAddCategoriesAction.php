@@ -14,7 +14,7 @@ class GetAddCategoriesAction
 
     public function __invoke(): Collection
     {
-        return Cache::remember('add-categories', 60*60*24, function() {
+        return Cache::remember('add_categories', 60*60*24, function() {
             return $this->model->where('type', 'add')->get();
         });
     }

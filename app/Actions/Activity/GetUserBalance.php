@@ -14,7 +14,7 @@ class GetUserBalance
 
     public function __invoke(): float
     {
-        return Cache::remember('balance'.Auth::user()->id, 60*60*24, function() {
+        return Cache::remember('balance_'.Auth::user()->id, 60*60*24, function() {
             $added = $this->model::with('category')
             ->whereHas('category', function($query) {
                 $query->where('type', 'add');

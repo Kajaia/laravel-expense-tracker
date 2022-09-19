@@ -14,7 +14,7 @@ class GetSubtractCategoriesAction
 
     public function __invoke(): Collection
     {
-        return Cache::remember('subtract-categories', 60*60*24, function() {
+        return Cache::remember('subtract_categories', 60*60*24, function() {
             return $this->model->where('type', 'subtract')->get();
         });
     }
