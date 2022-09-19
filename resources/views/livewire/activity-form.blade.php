@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="form-group my-2">
-                    <input wire:model="amount" type="number" min="1" max="100000" class="form-control rounded-3 shadow-sm @error('amount') is-invalid @enderror" placeholder="Amount" title="Enter your amount">
+                    <input wire:model.defer="amount" type="number" min="1" max="100000" class="form-control rounded-3 shadow-sm @error('amount') is-invalid @enderror" placeholder="Amount" title="Enter your amount">
                     @error('amount')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -25,7 +25,7 @@
                     @enderror
                 </div>
                 <div class="form-group my-2">
-                    <input wire:model="note" type="text" class="form-control rounded-3 shadow-sm @error('note') is-invalid @enderror" placeholder="Add note..." title="Enter your note">
+                    <input wire:model.defer="note" type="text" class="form-control rounded-3 shadow-sm @error('note') is-invalid @enderror" placeholder="Add note..." title="Enter your note">
                     @error('note')
                     <div class="invalid-feedback">
                         {{ $message }}
