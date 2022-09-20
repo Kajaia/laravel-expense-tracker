@@ -17,7 +17,9 @@ Highcharts.chart('chart', {
         backgroundColor: null
     },
     title: {
-        text: ''
+        text: '<span style="color: #b9b9bb; font-size: 16px;">Expenses</span><br/><br/><b style="color: #C63141; font-size: 26px;">{{ $this->expenses->sum("amount") }}₾</b>',
+        verticalAlign: 'middle',
+        floating: true
     },
     tooltip: {
         pointFormat: '<b>{point.percentage:.1f}%</b>'
@@ -31,19 +33,24 @@ Highcharts.chart('chart', {
         pie: {
             allowPointSelect: true,
             cursor: 'pointer',
+            borderColor: '#202125',
             dataLabels: {
-                enabled: true,
                 formatter: function() {
+                    if(this.percentage < 5) return '';
                     return Math.round(this.percentage * 100) / 100 + '%';
                 },
+                enabled: true,
                 distance: -30,
-                color:'white'
+                color: '#202125',
+                style: {
+                    fontSize: '14px'
+                }
             }
-        }
+        },
     },
     series: [{
         name: 'Amount',
-        innerSize: '50%',
+        innerSize: '60%',
         colorByPoint: true,
         data: [
             @foreach($this->expenses as $expense)
