@@ -16,4 +16,12 @@ class ChartData extends Component
             request('to')
         );
     }
+
+    public function getExpensesCountProperty(CategoryService $categoryService): float
+    {
+        return $categoryService->getExpensesCount(
+            request('from'),
+            request('to')
+        );
+    }
 }

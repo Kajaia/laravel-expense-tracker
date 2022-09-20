@@ -7,6 +7,7 @@ use App\Actions\Category\GetSubtractCategoriesAction;
 use App\Actions\Category\GetCategoryByIdAction;
 use App\Actions\Category\GetCategoryWithActivitiesAction;
 use App\Actions\Category\GetCategoryWithActivitiesByIdAction;
+use App\Actions\Category\GetExpensesCountAction;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -17,7 +18,8 @@ class CategoryService
         protected GetAddCategoriesAction $getAddCategoriesAction,
         protected GetCategoryWithActivitiesAction $getCategoryWithActivitiesAction,
         protected GetCategoryByIdAction $getCategoryByIdAction,
-        protected GetCategoryWithActivitiesByIdAction $getCategoryWithActivitiesByIdAction
+        protected GetCategoryWithActivitiesByIdAction $getCategoryWithActivitiesByIdAction,
+        protected GetExpensesCountAction $getExpensesCountAction
     ) {}
 
     public function getSubtractCategories(): Collection
@@ -47,5 +49,10 @@ class CategoryService
     ): Collection
     {
         return ($this->getCategoryWithActivitiesAction)($type, $from, $to);
+    }
+
+    public function getExpensesCount(?string $from = null, ?string $to = null): float
+    {
+        return ($this->getExpensesCountAction)($from, $to);
     }
 }
