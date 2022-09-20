@@ -32,7 +32,7 @@
                             <div>
                                 <form class="d-inline" action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-primary rounded-3 shadow-sm" title="Logout">
+                                    <button type="submit" class="btn btn-sm btn-secondary rounded-3 shadow-sm" title="Logout">
                                         <i class="fas fa-power-off"></i>
                                     </button>
                                 </form>
