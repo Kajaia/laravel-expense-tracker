@@ -1,3 +1,42 @@
+.text-light {
+    color: #e8e8e9 !important;
+}
+
+.text-primary {
+    color: #4056ac !important;
+}
+
+.text-secondary {
+    color: #b7b7d6 !important;
+}
+
+.bg-dark {
+    background-color: #202125 !important;
+}
+
+.bg-primary {
+    background-color: #4056ac !important;
+}
+
+.bg-secondary {
+    background-color: #34353a !important;
+}
+
+.bg-light {
+    background-color: #e8e8e9 !important;
+}
+
+.icon-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    padding-left: 8px;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -7,7 +46,7 @@
 }
 
 .category:hover {
-    border: 1px solid #0d6efd;
+    border: 1px solid #4056ac;
 }
 
 .tiny-text {

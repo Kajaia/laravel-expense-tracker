@@ -5,19 +5,21 @@
     <div class="row">
         @foreach($this->categories as $category)
             <div class="col-12" title="Click to get detailed info">
-                <div class="card border-0 rounded-0 p-0">
+                <div class="card bg-dark border-0 rounded-0 p-0">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <i class="fas {{ $category->icon }} text-primary me-3"></i>
-                            <a href="{{ route('activities', ['category' => $category, 'from' => request('from'), 'to' => request('to')]) }}" class="fw-bold text-dark text-decoration-none stretched-link">{{ $category->title }}</a>
-                            <span class="badge {{ $category->type === 'add' ? 'bg-success' : 'bg-danger' }} rounded-circle shadow-sm ms-1">
-                                {{ $category->activities->count() }}
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="icon-badge bg-secondary">
+                                <i class="fas {{ $category->icon }} text-secondary fa-xs me-2"></i>
                             </span>
+                            <a href="{{ route('activities', ['category' => $category, 'from' => request('from'), 'to' => request('to')]) }}" class="text-light text-decoration-none stretched-link">
+                                <small>{{ $category->title }}</small>
+                            </a>
                         </div>
                         <div class="text-end">
-                            <span class="badge {{ $category->type === 'add' ? 'bg-success' : 'bg-danger' }} rounded-pill shadow-sm">
+                            <small class="{{ $category->type === 'add' ? 'text-success' : 'text-danger' }}">
                                 {{ $category->activities->sum('amount') . '₾' }}
-                            </span>
+                                <i class="fas fa-angle-right ms-2 text-primary"></i>
+                            </small>
                         </div>
                     </div>
                     @if(!$loop->last)

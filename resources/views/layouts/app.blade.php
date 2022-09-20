@@ -14,25 +14,25 @@
     @yield('styles')
     @livewireStyles
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100 bg-secondary">
     @auth
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4 my-3">
-                <div class="card rounded-3 shadow-sm border-0">
+                <div class="card bg-dark rounded-3 shadow-sm border-0">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2" title="{{ Auth::user()->name }}">
-                                <img class="rounded-pill shadow-sm" width="40" height="40" src="{{ 'https://ui-avatars.com/api/?bold=true&uppercase=true&format=svg&background=0D6EFD&color=F8F9FA&name=' . Auth::user()->name }}" alt="{{ Auth::user()->name }}">
+                                <img class="rounded-pill shadow-sm" width="40" height="40" src="{{ 'https://ui-avatars.com/api/?bold=true&uppercase=true&format=svg&background=34353a&color=b7b7d6&name=' . Auth::user()->name }}" alt="{{ Auth::user()->name }}">
                                 <div>
-                                    <h1 class="mb-0 fs-6">Hey, {{ Auth::user()->name }}!</h1>
+                                    <h1 class="mb-0 fs-6 text-light">Hey, {{ Auth::user()->name }}!</h1>
                                     <livewire:activity-balance />
                                 </div>
                             </div>
                             <div>
                                 <form class="d-inline" action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-secondary rounded-3 shadow-sm" title="Logout">
+                                    <button type="submit" class="btn btn-sm bg-secondary text-secondary rounded-3 shadow-sm" title="Logout">
                                         <i class="fas fa-power-off"></i>
                                     </button>
                                 </form>

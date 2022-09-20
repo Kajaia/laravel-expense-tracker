@@ -1,8 +1,8 @@
 {
     "name": "Expenses Tracker App",
     "short_name": "Expenses",
-    "theme_color": "#0d6efd",
-    "background_color": "#f8f9fa",
+    "theme_color": "#4056ac",
+    "background_color": "#202125",
     "display": "fullscreen",
     "orientation": "portrait",
     "scope": "https://expenses.jrwebdeveloper.com/",
