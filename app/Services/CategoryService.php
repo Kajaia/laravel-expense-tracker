@@ -6,6 +6,7 @@ use App\Actions\Category\GetAddCategoriesAction;
 use App\Actions\Category\GetSubtractCategoriesAction;
 use App\Actions\Category\GetCategoryByIdAction;
 use App\Actions\Category\GetCategoryWithActivitiesAction;
+use App\Actions\Category\GetCategoryWithActivitiesByIdAction;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -15,7 +16,8 @@ class CategoryService
         protected GetSubtractCategoriesAction $getSubtractCategoriesAction,
         protected GetAddCategoriesAction $getAddCategoriesAction,
         protected GetCategoryWithActivitiesAction $getCategoryWithActivitiesAction,
-        protected GetCategoryByIdAction $getCategoryByIdAction
+        protected GetCategoryByIdAction $getCategoryByIdAction,
+        protected GetCategoryWithActivitiesByIdAction $getCategoryWithActivitiesByIdAction
     ) {}
 
     public function getSubtractCategories(): Collection
@@ -31,6 +33,11 @@ class CategoryService
     public function getCategoryById(int $id): Category
     {
         return ($this->getCategoryByIdAction)($id);
+    }
+
+    public function getCategoryWithActivitiesByIdAction(int $id): Category
+    {
+        return ($this->getCategoryWithActivitiesByIdAction)($id);
     }
 
     public function getCategoryWithActivities(
