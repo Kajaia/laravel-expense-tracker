@@ -13,6 +13,10 @@ class GetCategoryByIdAction
 
     public function __invoke(int $id): Category
     {
-        return $this->model::findOrFail($id);
+        return $this->model::with('activities')
+            ->where('id', $id)
+            ->whereHas('activities', function($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->first();
     }
 }
