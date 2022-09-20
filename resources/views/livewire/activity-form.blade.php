@@ -2,12 +2,12 @@
     <div class="text-center">
         <div class="row">
             <div class="col-6">
-                <button id="subtractMoney" class="btn btn-danger rounded-3 w-100 shadow-sm py-3" title="Subtract money">
+                <button id="subtractMoney" class="btn bg-secondary text-secondary rounded-3 w-100 shadow-sm py-3" title="Subtract money">
                     <i class="fas fa-minus"></i>
                 </button>
             </div>
             <div class="col-6">
-                <button id="addMoney" class="btn btn-success rounded-3 w-100 shadow-sm py-3" title="Add money">
+                <button id="addMoney" class="btn bg-secondary text-secondary rounded-3 w-100 shadow-sm py-3" title="Add money">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
