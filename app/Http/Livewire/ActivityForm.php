@@ -33,7 +33,7 @@ class ActivityForm extends Component
     public function saveForm()
     {
         $this->validate((new ActivityRequest)->rules());
-
+        
         $categoryService = app(CategoryService::class);
 
         $category = $categoryService->getCategoryById($this->category_id);
