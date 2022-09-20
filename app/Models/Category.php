@@ -23,6 +23,7 @@ class Category extends Model
         $to = request('to');
         
         return $this->hasMany(Activity::class)
+            ->where('user_id', auth()->user()->id)
             ->when($from && $to, function($query) use ($from, $to) {
                 $query->whereBetween('created_at', [
                     $from.' 00:00:00',
