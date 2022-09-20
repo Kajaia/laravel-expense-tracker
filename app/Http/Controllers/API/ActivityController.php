@@ -32,7 +32,7 @@ class ActivityController extends Controller
 
         if($category->type === 'subtract') {
             if($this->activityService->getBalance() >= $request->amount) {
-                Cache::decrement('balance_'.Auth::user()->id, $request->amount);
+                Cache::forget('balance_'.Auth::user()->id);
 
                 return $this->activityService->addActivity(
                     $request->amount,
@@ -45,7 +45,7 @@ class ActivityController extends Controller
                 ], 200);
             }
         } elseif($category->type === 'add') {
-            Cache::increment('balance_'.Auth::user()->id, $request->amount);
+            Cache::forget('balance_'.Auth::user()->id);
 
             return $this->activityService->addActivity(
                 $request->amount,

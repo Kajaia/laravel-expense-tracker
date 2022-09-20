@@ -40,7 +40,7 @@ class ActivityForm extends Component
 
         if($category->type === 'subtract') {
             if($this->balance() >= $this->amount) {
-                Cache::decrement('balance_'.Auth::user()->id, $this->amount);
+                Cache::forget('balance_'.Auth::user()->id);
 
                 $this->addActivityAndFireEvent();
 
@@ -55,7 +55,7 @@ class ActivityForm extends Component
                 ]);
             }
         } elseif($category->type === 'add') {
-            Cache::increment('balance_'.Auth::user()->id, $this->amount);
+            Cache::forget('balance_'.Auth::user()->id, $this->amount);
 
             $this->addActivityAndFireEvent();
 
