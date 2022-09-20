@@ -4,7 +4,7 @@
     @endif
     <div class="row">
         @foreach($this->categories as $category)
-            <div class="col-12">
+            <div class="col-12" title="Click to get detailed info">
                 <div class="card border-0 rounded-0 p-0">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>

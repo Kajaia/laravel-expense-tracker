@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route('home', ['from' => request('from'), 'to' => request('to')]) }}" class="btn btn-link p-0 text-decoration-none mb-2">
+<a title="Go back to dashboard" href="{{ route('home', ['from' => request('from'), 'to' => request('to')]) }}" class="btn btn-link p-0 text-decoration-none mb-2">
     <i class="fas fa-angle-left"></i>
     Back
 </a>

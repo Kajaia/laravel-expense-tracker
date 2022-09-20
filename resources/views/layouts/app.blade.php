@@ -22,10 +22,10 @@
                 <div class="card rounded-3 shadow-sm border-0">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2" title="{{ 'Logged in user: ' . Auth::user()->name }}">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2" title="{{ Auth::user()->name }}">
                                 <img class="rounded-pill shadow-sm" width="40" height="40" src="{{ 'https://ui-avatars.com/api/?bold=true&uppercase=true&format=svg&background=0D6EFD&color=F8F9FA&name=' . Auth::user()->name }}" alt="{{ Auth::user()->name }}">
                                 <div>
-                                    <h1 class="mb-0 fs-6">Hello, {{ Auth::user()->name }}!</h1>
+                                    <h1 class="mb-0 fs-6">Hey, {{ Auth::user()->name }}!</h1>
                                     <livewire:activity-balance />
                                 </div>
                             </div>
