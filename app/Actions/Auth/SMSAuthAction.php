@@ -20,12 +20,9 @@ class SMSAuthAction
         $request->validate($request->rules());
 
         // Get user by phone number
-        $user = $this->model->where('phone', $request->phone)->first();
-
-        // If not user return error
-        if(!$user) { 
-            return response()->json(['message' => 'No user with this phone.'], 401);
-        }
+        $user = $this->model->firstOrCreate([
+            'phone' => $request->phone
+        ]);
 
         // Get latest verification code by phone number
         $code = $this->code::where([
@@ -37,7 +34,7 @@ class SMSAuthAction
             ->first();
 
         // Check if verification code exists and user can authenticate
-        if($code) { 
+        if($user && $code) { 
             return response()->json([
                 'user' => $user,
                 'token' => $user->createToken($request->ip())->plainTextToken
