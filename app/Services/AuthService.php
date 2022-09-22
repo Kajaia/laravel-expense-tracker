@@ -5,11 +5,15 @@ namespace App\Services;
 use App\Actions\Auth\ApiLoginAction;
 use App\Actions\Auth\ApiLogoutAction;
 use App\Actions\Auth\ApiRegisterAction;
+use App\Actions\Auth\SendAuthCodeAction;
+use App\Actions\Auth\SMSAuthAction;
 use App\Actions\Auth\UserLoginAction;
 use App\Actions\Auth\UserLogoutAction;
 use App\Actions\Auth\UserRegisterAction;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\SendCodeRequest;
+use App\Http\Requests\VerificationCodeRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,7 +26,9 @@ class AuthService
         protected UserLogoutAction $userLogoutAction,
         protected ApiRegisterAction $apiRegisterAction,
         protected ApiLoginAction $apiLoginAction,
-        protected ApiLogoutAction $apiLogoutAction
+        protected ApiLogoutAction $apiLogoutAction,
+        protected SendAuthCodeAction $sendAuthCodeAction,
+        protected SMSAuthAction $sMSAuthAction
     ) {}
 
     public function register(RegisterRequest $request): RedirectResponse
@@ -53,5 +59,15 @@ class AuthService
     public function apiLogout(Request $request): JsonResponse
     {
         return ($this->apiLogoutAction)($request);
+    }
+
+    public function sendCode(SendCodeRequest $request): string
+    {
+        return ($this->sendAuthCodeAction)($request);
+    }
+
+    public function smsAuth(VerificationCodeRequest $request): JsonResponse
+    {
+        return ($this->sMSAuthAction)($request);
     }
 }
