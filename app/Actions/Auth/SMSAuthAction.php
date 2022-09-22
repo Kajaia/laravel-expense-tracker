@@ -5,13 +5,13 @@ namespace App\Actions\Auth;
 use App\Http\Requests\VerificationCodeRequest;
 use App\Models\User;
 use App\Models\VerificationCode;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 
 class SMSAuthAction
 {
     public function __construct(
-        protected User $model
+        protected User $model,
+        protected VerificationCode $code
     ) {}
 
     public function __invoke(VerificationCodeRequest $request): JsonResponse
@@ -28,20 +28,20 @@ class SMSAuthAction
         }
 
         // Get latest verification code by phone number
-        $code = VerificationCode::where([
+        $code = $this->code::where([
             'phone' => $user->phone,
             'code' => $request->code,
         ])
-            ->where('created_at', '>=', Carbon::now()->subMinutes(2))
+            ->where('created_at', '>=', now()->subMinutes(2))
             ->orderBy('created_at', 'desc')
             ->first();
 
         // Check if verification code exists and user can authenticate
         if($code) { 
-            return [
+            return response()->json([
                 'user' => $user,
                 'token' => $user->createToken($request->ip())->plainTextToken
-            ]; 
+            ], 200); 
         }
 
         // If no code retun Wrong verification code message
