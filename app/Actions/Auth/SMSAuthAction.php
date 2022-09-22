@@ -22,11 +22,10 @@ class SMSAuthAction
         // Get user by phone number
         $user = $this->model->where('phone', $request->phone)->first();
 
-        // Error
-        $error = response()->json(['message' => 'No user with this phone.'], 401);
-
         // If not user return error
-        if(!$user) { return $error; }
+        if(!$user) { 
+            return response()->json(['message' => 'No user with this phone.'], 401);
+        }
 
         // Get latest verification code by phone number
         $code = VerificationCode::where([
@@ -45,6 +44,7 @@ class SMSAuthAction
             ]; 
         }
 
+        // If no code retun Wrong verification code message
         return response()->json(['message' => 'Wrong verification code provided.'], 401);
     }
 }

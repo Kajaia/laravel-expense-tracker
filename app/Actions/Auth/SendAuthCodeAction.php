@@ -21,12 +21,12 @@ class SendAuthCodeAction
         $code = rand(1000, 9999);
 
         // Create record in database
-        $this->model->updateOrCreate([
+        $this->model->create([
             'phone' => $request->phone,
             'code' => $code
         ]);
 
-        // Send SMS and return response
+        // Send SMS and return success message
         return SMS::send($request->phone, $code);
     }
 }
