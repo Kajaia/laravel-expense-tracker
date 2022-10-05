@@ -24,7 +24,7 @@ class ActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => 'required|numeric|min:1|max:100000',
+            'amount' => 'required|numeric|max:100000',
             'note' => 'nullable|string|max:255',
             'category_id' => 'required|integer'
         ];
