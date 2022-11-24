@@ -29,7 +29,8 @@
                                     <livewire:activity-balance />
                                 </div>
                             </div>
-                            <div>
+                            <div class="d-flex align-items-center text-end gap-1">
+                                <livewire:currency-switcher />
                                 <form class="d-inline" action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-sm bg-secondary text-secondary rounded-3 shadow-sm" title="Logout">

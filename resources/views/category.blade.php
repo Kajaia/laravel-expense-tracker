@@ -14,7 +14,7 @@
     </div>
     <div class="text-end">
         <small class="{{ $category->type === 'add' ? 'text-success' : 'text-danger' }}">
-            {{ $category->activities->sum('amount') . '₾' }}
+            {{ $category->activities->sum('amount') . auth()->user()->currency_symbol }}
         </small>
     </div>
 </div>
@@ -23,7 +23,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <div>
             <small class="{{ $category->type === 'add' ? 'text-success' : 'text-danger' }}">
-                {{ $activity->amount . '₾' }}
+                {{ $activity->amount . auth()->user()->currency_symbol }}
                 @if($activity->note)
                 <span class="tiny-text text-secondary">
                     ({{ $activity->note }})

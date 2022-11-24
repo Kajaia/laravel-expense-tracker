@@ -13,7 +13,10 @@ class ActivityList extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    protected $listeners = ['addedActivity' => '$refresh'];
+    protected $listeners = [
+        'addedActivity' => '$refresh',
+        'changedCurrency' => '$refresh'
+    ];
 
     public function getCategoriesProperty(CategoryService $categoryService): Collection
     {

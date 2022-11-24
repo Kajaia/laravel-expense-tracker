@@ -8,6 +8,8 @@ use Livewire\Component;
 
 class ChartData extends Component
 {
+    protected $listeners = ['changedCurrency' => '$refresh'];
+
     public function getExpensesProperty(CategoryService $categoryService): Collection
     {
         return $categoryService->getCategoryWithActivities(

@@ -7,7 +7,10 @@ use Livewire\Component;
 
 class ActivityBalance extends Component
 {
-    protected $listeners = ['addedActivity' => 'getBalanceProperty'];
+    protected $listeners = [
+        'addedActivity' => 'getBalanceProperty',
+        'changedCurrency' => '$refresh'
+    ];
 
     public function getBalanceProperty(ActivityService $activityService): float
     {

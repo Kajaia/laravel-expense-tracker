@@ -16,7 +16,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'currency'
     ];
 
     protected $hidden = [
@@ -28,8 +29,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['currency_symbol'];
+
     public function activities(): HasMany
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function getCurrencySymbolAttribute(): String
+    {
+        return match($this->currency) {
+            'gel' => '₾',
+            'usd' => '$',
+            'eur' => '€'
+        };
     }
 }

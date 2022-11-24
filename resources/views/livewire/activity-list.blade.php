@@ -17,7 +17,7 @@
                         </div>
                         <div class="text-end">
                             <small class="{{ $category->type === 'add' ? 'text-success' : 'text-danger' }}">
-                                {{ $category->activities->sum('amount') . '₾' }}
+                                {{ $category->activities->sum('amount') . auth()->user()->currency_symbol }}
                                 <i class="fas fa-angle-right ms-2 text-primary"></i>
                             </small>
                         </div>

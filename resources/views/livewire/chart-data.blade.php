@@ -17,7 +17,7 @@ Highcharts.chart('chart', {
         backgroundColor: null
     },
     title: {
-        text: '<span style="color: #b9b9bb; font-size: 16px;">Expenses</span><br/><br/><b style="color: #C63141; font-size: 26px;">{{ $this->expensesCount }}₾</b>',
+        text: '<span style="color: #b9b9bb; font-size: 16px;">Expenses</span><br/><br/><b style="color: #C63141; font-size: 26px;">{{ $this->expensesCount . auth()->user()->currency_symbol }}</b>',
         verticalAlign: 'middle',
         floating: true
     },
