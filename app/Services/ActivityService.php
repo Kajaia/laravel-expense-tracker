@@ -8,6 +8,7 @@ use App\Actions\Activity\GetUserBalance;
 use App\Models\Activity;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
 
 class ActivityService
 {
@@ -43,6 +44,8 @@ class ActivityService
     public function removeActivity(int $id): RedirectResponse
     {
         Activity::destroy($id);
+
+        Cache::pull('balance_' . auth()->user()->id);
 
         return back();
     }
