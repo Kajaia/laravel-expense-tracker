@@ -11,7 +11,7 @@
                             <span class="icon-badge bg-secondary">
                                 <i class="fas {{ $category->icon }} text-secondary fa-xs me-2"></i>
                             </span>
-                            <a href="{{ route('activities', ['category' => $category, 'from' => request('from'), 'to' => request('to')]) }}" class="text-light text-decoration-none stretched-link">
+                            <a href="{{ route('activities.show', ['category' => $category, 'from' => request('from'), 'to' => request('to')]) }}" class="text-light text-decoration-none stretched-link">
                                 <small>{{ $category->title }}</small>
                             </a>
                         </div>

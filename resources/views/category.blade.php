@@ -31,8 +31,15 @@
                 @endif
             </small>
         </div>
-        <div>
+        <div class="d-flex align-items-center gap-1">
             <small class="text-secondary">{{ Carbon\Carbon::parse($activity->created_at)->format('d M, Y') }}</small>
+            <form action="{{ route('activities.destroy', ['category' => $activity->category, 'activity' => $activity]) }}" method="post">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn text-primary border-0 p-0" title="Remove activity">
+                    <i class="fas fa-trash fa-sm text-secondary cursor-pointer" onclick="return confirm('Are you sure?');"></i>
+                </button>
+            </form>
         </div>
     </div>
     @if(!$loop->last)

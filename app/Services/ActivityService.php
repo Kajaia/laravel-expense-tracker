@@ -6,6 +6,7 @@ use App\Actions\Activity\AddActivityAction;
 use App\Actions\Activity\GetUserActivitiesAction;
 use App\Actions\Activity\GetUserBalance;
 use App\Models\Activity;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Pagination\Paginator;
 
 class ActivityService
@@ -14,14 +15,14 @@ class ActivityService
         protected AddActivityAction $addActivityAction,
         protected GetUserBalance $getUserBalance,
         protected GetUserActivitiesAction $getUserActivitiesAction
-    ) {}
+    ) {
+    }
 
     public function addActivity(
         float $amount,
         ?string $note,
         int $categoryId
-    ): Activity
-    {
+    ): Activity {
         return ($this->addActivityAction)(
             $amount,
             $note,
@@ -37,5 +38,12 @@ class ActivityService
     public function getActivities(): Paginator
     {
         return ($this->getUserActivitiesAction)();
+    }
+
+    public function removeActivity(int $id): RedirectResponse
+    {
+        Activity::destroy($id);
+
+        return back();
     }
 }
