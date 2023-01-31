@@ -10,6 +10,9 @@
         <button type="submit" title="Apply dates" class="btn btn-sm bg-secondary text-secondary rounded-3 shadow-sm px-2 py-1">
             <i class="fas fa-check fa-sm"></i>
         </button>
+        <a href="{{ route('home') }}" title="Clear dates" class="btn btn-sm bg-secondary text-secondary rounded-3 shadow-sm px-2 py-1">
+            <i class="fas fa-times fa-sm"></i>
+        </a>
     </form>
 </div>
 <livewire:activity-list />
