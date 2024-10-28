@@ -3,10 +3,12 @@
     "short_name": "Expenses",
     "theme_color": "#4056ac",
     "background_color": "#202125",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait",
-    "scope": "https://expenses.jrwebdeveloper.com/",
-    "start_url": "https://expenses.jrwebdeveloper.com/",
+    "dir": "ltr",
+    "categories": ["finances", "expenses"],
+    "scope": "/",
+    "start_url": "/",
     "icons": [
         {
             "src": "assets/icons/icon-48x48.png",
