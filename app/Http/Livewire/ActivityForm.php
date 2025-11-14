@@ -97,7 +97,7 @@ class ActivityForm extends Component
         $this->category_id = null;
     }
 
-    public function balance(): int
+    public function balance(): float
     {
         $activityService = app(ActivityService::class);
 
